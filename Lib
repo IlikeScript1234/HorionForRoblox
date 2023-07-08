@@ -55,6 +55,7 @@ local UIListLayout_6 = Instance.new("UIListLayout")
 HorionGui.Name = "HorionGui"
 HorionGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 HorionGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+HorionGui.ResetOnSpawn = false
 
 CombatTab.Name = "CombatTab"
 CombatTab.Parent = HorionGui
