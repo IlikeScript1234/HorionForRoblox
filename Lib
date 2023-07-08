@@ -405,6 +405,7 @@ end
 coroutine.wrap(OXZPCGS_fake_script)()
     local TogButton = {}
     function lib.CombatButton(argstable)
+        local oncolor = false
         local TextButton = Instance.new("TextButton")
         TextButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
         TextButton.BackgroundTransparency = 1.000
@@ -447,6 +448,7 @@ coroutine.wrap(OXZPCGS_fake_script)()
         end)
     end
     function lib.VisualButton(argstable)
+        local oncolor = false
         local TextButton = Instance.new("TextButton")
         TextButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
         TextButton.BackgroundTransparency = 1.000
@@ -489,6 +491,7 @@ coroutine.wrap(OXZPCGS_fake_script)()
         end)
     end
     function lib.MovementButton(argstable)
+        local oncolor = false
         local TextButton = Instance.new("TextButton")
         TextButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
         TextButton.BackgroundTransparency = 1.000
@@ -531,6 +534,7 @@ coroutine.wrap(OXZPCGS_fake_script)()
         end)
     end
     function lib.PlayerButton(argstable)
+        local oncolor = false
         local TextButton = Instance.new("TextButton")
         TextButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
         TextButton.BackgroundTransparency = 1.000
@@ -545,8 +549,6 @@ coroutine.wrap(OXZPCGS_fake_script)()
         TextButton.TextSize = 18.000
         TextButton.TextYAlignment = Enum.TextYAlignment.Top
         TextButton.MouseButton1Click:Connect(function()
-            toggled = not toggled
-            pcall(argstable.Function, toggled)
             if oncolor == false then
                 oncolor = true
                 TextButton.BackgroundTransparency = 0.750
@@ -554,7 +556,8 @@ coroutine.wrap(OXZPCGS_fake_script)()
                 oncolor = false
                 TextButton.BackgroundTransparency = 1.000
             end
-           
+            toggled = not toggled
+            pcall(argstable.Function, toggled)
         end)
         function TogButton.ToggleButton(TogOn)
             TogOn = TogOn or toggled
@@ -573,6 +576,7 @@ coroutine.wrap(OXZPCGS_fake_script)()
         end)
     end
     function lib.WorldButton(argstable)
+        local oncolor = false
         local TextButton = Instance.new("TextButton")
         TextButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
         TextButton.BackgroundTransparency = 1.000
