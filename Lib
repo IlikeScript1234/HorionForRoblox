@@ -1,5 +1,12 @@
 local lib = {}
-function lib:setup()
+local soons = [[
+print("soons ofc)
+]]
+if not isfile("HorionCfgSys.json") then
+    writefile("HorionCfgSys.json", soons)
+end
+
+function lib.CreateLibrary()
 local HorionGui = Instance.new("ScreenGui")
 local CombatTab = Instance.new("Frame")
 local UICorner = Instance.new("UICorner")
@@ -50,7 +57,6 @@ local UICorner_18 = Instance.new("UICorner")
 local Gui = Instance.new("ScrollingFrame")
 local UIListLayout_6 = Instance.new("UIListLayout")
 
---Properties:
 
 HorionGui.Name = "HorionGui"
 HorionGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
@@ -66,6 +72,7 @@ CombatTab.BorderColor3 = Color3.fromRGB(0, 0, 0)
 CombatTab.BorderSizePixel = 0
 CombatTab.Position = UDim2.new(0.00623438507, 0, 0.0600000024, 0)
 CombatTab.Size = UDim2.new(0, 180, 0, 580)
+CombatTab.Draggable = true
 
 UICorner.CornerRadius = UDim.new(0, 12)
 UICorner.Parent = CombatTab
@@ -107,7 +114,6 @@ Combat.BorderSizePixel = 0
 Combat.Position = UDim2.new(0, 0, 0.0603448264, 0)
 Combat.Size = UDim2.new(0, 180, 0, 526)
 Combat.ScrollBarThickness = 0
-
 UIListLayout.Parent = Combat
 UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
 
@@ -121,6 +127,7 @@ VisualTab.BorderColor3 = Color3.fromRGB(0, 0, 0)
 VisualTab.BorderSizePixel = 0
 VisualTab.Position = UDim2.new(0.129052326, 0, 0.0600000173, 0)
 VisualTab.Size = UDim2.new(0, 200, 0, 419)
+VisualTab.Draggable = true
 
 UICorner_4.CornerRadius = UDim.new(0, 12)
 UICorner_4.Parent = VisualTab
@@ -175,6 +182,7 @@ MovementTab.BorderColor3 = Color3.fromRGB(0, 0, 0)
 MovementTab.BorderSizePixel = 0
 MovementTab.Position = UDim2.new(0.264962554, 0, 0.0600000024, 0)
 MovementTab.Size = UDim2.new(0, 200, 0, 580)
+MovementTab.Draggable = true
 
 UICorner_7.CornerRadius = UDim.new(0, 12)
 UICorner_7.Parent = MovementTab
@@ -229,6 +237,7 @@ PlayerTab.BorderColor3 = Color3.fromRGB(0, 0, 0)
 PlayerTab.BorderSizePixel = 0
 PlayerTab.Position = UDim2.new(0.400872767, 0, 0.0588235296, 0)
 PlayerTab.Size = UDim2.new(0, 180, 0, 580)
+PlayerTab.Draggable = true
 
 UICorner_10.CornerRadius = UDim.new(0, 12)
 UICorner_10.Parent = PlayerTab
@@ -283,6 +292,7 @@ WorldTab.BorderColor3 = Color3.fromRGB(0, 0, 0)
 WorldTab.BorderSizePixel = 0
 WorldTab.Position = UDim2.new(0.527431369, 0, 0.0576470606, 0)
 WorldTab.Size = UDim2.new(0, 200, 0, 580)
+WorldTab.Draggable = true
 
 UICorner_13.CornerRadius = UDim.new(0, 12)
 UICorner_13.Parent = WorldTab
@@ -338,6 +348,7 @@ GuiTab.BorderColor3 = Color3.fromRGB(0, 0, 0)
 GuiTab.BorderSizePixel = 0
 GuiTab.Position = UDim2.new(0.678304136, 0, 0.0599999987, 0)
 GuiTab.Size = UDim2.new(0, 200, 0, 301)
+GuiTab.Draggable = true
 
 UICorner_16.CornerRadius = UDim.new(0, 12)
 UICorner_16.Parent = GuiTab
@@ -384,7 +395,7 @@ UIListLayout_6.Parent = Gui
 UIListLayout_6.SortOrder = Enum.SortOrder.LayoutOrder
 
 
-local function OXZPCGS_fake_script() -- HorionGui.GuiBind 
+local function OXZPCGS_fake_script()
 	local script = Instance.new('LocalScript', HorionGui)
 
 	
@@ -400,225 +411,11 @@ local function OXZPCGS_fake_script() -- HorionGui.GuiBind
 			end
 		end
 	end)
-	
 end
 coroutine.wrap(OXZPCGS_fake_script)()
-    local TogButton = {}
-    function lib.CombatButton(argstable)
-        local oncolor = false
-        local TextButton = Instance.new("TextButton")
-        TextButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-        TextButton.BackgroundTransparency = 1.000
-        TextButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
-        TextButton.BorderSizePixel = 0
-        TextButton.Position = UDim2.new(0, 0, 0.0232558139, 0)
-        TextButton.Size = UDim2.new(0, 200, 0, 24)
-        TextButton.Font = Enum.Font.SourceSansSemibold
-        TextButton.Text = argstable["Name"]
-        TextButton.Parent = Combat
-        TextButton.TextColor3 = Color3.fromRGB(231, 231, 231)
-        TextButton.TextSize = 18.000
-        TextButton.TextYAlignment = Enum.TextYAlignment.Top
-        TextButton.MouseButton1Click:Connect(function()
-            toggled = not toggled
-            pcall(argstable.Function, toggled)
-            if oncolor == false then
-                oncolor = true
-                TextButton.BackgroundTransparency = 0.750
-            else
-                oncolor = false
-                TextButton.BackgroundTransparency = 1.000
-            end
-           
-        end)
-        function TogButton.ToggleButton(TogOn)
-            TogOn = TogOn or toggled
-            if TogOn then
-                toggled = true
-                pcall(argstable.Function, toggled)
-            else
-                toggled = false
-                pcall(argstable.Function, toggled)
-            end
-        end
-        task.spawn(function()
-            if DefaultT then
-                TogFunction.ToggleButton(DefaultT)
-            end
-        end)
-    end
-    function lib.VisualButton(argstable)
-        local oncolor = false
-        local TextButton = Instance.new("TextButton")
-        TextButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-        TextButton.BackgroundTransparency = 1.000
-        TextButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
-        TextButton.BorderSizePixel = 0
-        TextButton.Position = UDim2.new(0, 0, 0.0232558139, 0)
-        TextButton.Size = UDim2.new(0, 200, 0, 24)
-        TextButton.Font = Enum.Font.SourceSansSemibold
-        TextButton.Text = argstable["Name"]
-        TextButton.Parent = Visual
-        TextButton.TextColor3 = Color3.fromRGB(231, 231, 231)
-        TextButton.TextSize = 18.000
-        TextButton.TextYAlignment = Enum.TextYAlignment.Top
-        TextButton.MouseButton1Click:Connect(function()
-            toggled = not toggled
-            pcall(argstable.Function, toggled)
-            if oncolor == false then
-                oncolor = true
-                TextButton.BackgroundTransparency = 0.750
-            else
-                oncolor = false
-                TextButton.BackgroundTransparency = 1.000
-            end
-           
-        end)
-        function TogButton.ToggleButton(TogOn)
-            TogOn = TogOn or toggled
-            if TogOn then
-                toggled = true
-                pcall(argstable.Function, toggled)
-            else
-                toggled = false
-                pcall(argstable.Function, toggled)
-            end
-        end
-        task.spawn(function()
-            if DefaultT then
-                TogFunction.ToggleButton(DefaultT)
-            end
-        end)
-    end
-    function lib.MovementButton(argstable)
-        local oncolor = false
-        local TextButton = Instance.new("TextButton")
-        TextButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-        TextButton.BackgroundTransparency = 1.000
-        TextButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
-        TextButton.BorderSizePixel = 0
-        TextButton.Position = UDim2.new(0, 0, 0.0232558139, 0)
-        TextButton.Size = UDim2.new(0, 200, 0, 24)
-        TextButton.Font = Enum.Font.SourceSansSemibold
-        TextButton.Text = argstable["Name"]
-        TextButton.Parent = Movement
-        TextButton.TextColor3 = Color3.fromRGB(231, 231, 231)
-        TextButton.TextSize = 18.000
-        TextButton.TextYAlignment = Enum.TextYAlignment.Top
-        TextButton.MouseButton1Click:Connect(function()
-            toggled = not toggled
-            pcall(argstable.Function, toggled)
-            if oncolor == false then
-                oncolor = true
-                TextButton.BackgroundTransparency = 0.750
-            else
-                oncolor = false
-                TextButton.BackgroundTransparency = 1.000
-            end
-           
-        end)
-        function TogButton.ToggleButton(TogOn)
-            TogOn = TogOn or toggled
-            if TogOn then
-                toggled = true
-                pcall(argstable.Function, toggled)
-            else
-                toggled = false
-                pcall(argstable.Function, toggled)
-            end
-        end
-        task.spawn(function()
-            if DefaultT then
-                TogFunction.ToggleButton(DefaultT)
-            end
-        end)
-    end
-    function lib.PlayerButton(argstable)
-        local oncolor = false
-        local TextButton = Instance.new("TextButton")
-        TextButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-        TextButton.BackgroundTransparency = 1.000
-        TextButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
-        TextButton.BorderSizePixel = 0
-        TextButton.Position = UDim2.new(0, 0, 0.0232558139, 0)
-        TextButton.Size = UDim2.new(0, 200, 0, 24)
-        TextButton.Font = Enum.Font.SourceSansSemibold
-        TextButton.Text = argstable["Name"]
-        TextButton.Parent = Player
-        TextButton.TextColor3 = Color3.fromRGB(231, 231, 231)
-        TextButton.TextSize = 18.000
-        TextButton.TextYAlignment = Enum.TextYAlignment.Top
-        TextButton.MouseButton1Click:Connect(function()
-            if oncolor == false then
-                oncolor = true
-                TextButton.BackgroundTransparency = 0.750
-            else
-                oncolor = false
-                TextButton.BackgroundTransparency = 1.000
-            end
-            toggled = not toggled
-            pcall(argstable.Function, toggled)
-        end)
-        function TogButton.ToggleButton(TogOn)
-            TogOn = TogOn or toggled
-            if TogOn then
-                toggled = true
-                pcall(argstable.Function, toggled)
-            else
-                toggled = false
-                pcall(argstable.Function, toggled)
-            end
-        end
-        task.spawn(function()
-            if DefaultT then
-                TogFunction.ToggleButton(DefaultT)
-            end
-        end)
-    end
-    function lib.WorldButton(argstable)
-        local oncolor = false
-        local TextButton = Instance.new("TextButton")
-        TextButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-        TextButton.BackgroundTransparency = 1.000
-        TextButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
-        TextButton.BorderSizePixel = 0
-        TextButton.Position = UDim2.new(0, 0, 0.0232558139, 0)
-        TextButton.Size = UDim2.new(0, 200, 0, 24)
-        TextButton.Font = Enum.Font.SourceSansSemibold
-        TextButton.Text = argstable["Name"]
-        TextButton.Parent = World
-        TextButton.TextColor3 = Color3.fromRGB(231, 231, 231)
-        TextButton.TextSize = 18.000
-        TextButton.TextYAlignment = Enum.TextYAlignment.Top
-        TextButton.MouseButton1Click:Connect(function()
-            toggled = not toggled
-            pcall(argstable.Function, toggled)
-            if oncolor == false then
-                oncolor = true
-                TextButton.BackgroundTransparency = 0.750
-            else
-                oncolor = false
-                TextButton.BackgroundTransparency = 1.000
-            end
-           
-        end)
-        function TogButton.ToggleButton(TogOn)
-            TogOn = TogOn or toggled
-            if TogOn then
-                toggled = true
-                pcall(argstable.Function, toggled)
-            else
-                toggled = false
-                pcall(argstable.Function, toggled)
-            end
-        end
-        task.spawn(function()
-            if DefaultT then
-                TogFunction.ToggleButton(DefaultT)
-            end
-        end)
-    end
-    function lib.GuiButton(argstable)
+
+    function lib.CreateButton(argstable)
+        local TogFuncs = {}
         local DefaultT = argstable["Default"] or false
         local toggled = DefaultT or false
         local oncolor = false
@@ -631,7 +428,7 @@ coroutine.wrap(OXZPCGS_fake_script)()
         TextButton.Size = UDim2.new(0, 200, 0, 24)
         TextButton.Font = Enum.Font.SourceSansSemibold
         TextButton.Text = argstable["Name"]
-        TextButton.Parent = Gui
+        TextButton.Parent = argstable["Tab"]
         TextButton.TextColor3 = Color3.fromRGB(231, 231, 231)
         TextButton.TextSize = 18.000
         TextButton.TextYAlignment = Enum.TextYAlignment.Top
@@ -659,18 +456,21 @@ coroutine.wrap(OXZPCGS_fake_script)()
         end
         task.spawn(function()
             if DefaultT then
-                TogFunction.ToggleButton(DefaultT)
+                TogFuncs.ToggleButton(DefaultT)
             end
         end)
     end
-    return TogButton
+    return TogFuncs
 end
--- example
+return lib
+-- example for who that using thr loadstring
 --[[
-    lib:setup()
-    local button = lib.GuiButton({
+    local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/IlikeScript1234/HorionForRoblox/main/Lib", true))
+    Library.CreateLibrary()
+    local button = lib.CreateButton({
         Name = "Button",
-        Default = true,
+        Tab = Combat, -- exist tab: Combat, Gui, Visual,Movement,Player and World
+        Default = false,
         Function = function(callback)
             if callback then
                 print("hi")
@@ -680,4 +480,3 @@ end
         end,
     })
 ]]
-return lib
